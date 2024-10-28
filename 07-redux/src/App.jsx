@@ -14,7 +14,7 @@
 
 import { legacy_createStore, applyMiddleware, combineReducers } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 
 // 1. Action 객체 생성
 const increment1 = {
