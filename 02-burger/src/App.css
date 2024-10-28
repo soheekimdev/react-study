@@ -1,0 +1,28 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.bread {
+  background-color: orange;
+}
+.patty {
+  background-color: brown;
+}
+.lettuce {
+  background-color: green;
+}
+.tomato {
+  background-color: tomato;
+}
+.cheese {
+  background-color: yellow;
+}
