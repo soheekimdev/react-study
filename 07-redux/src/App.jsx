@@ -23,12 +23,13 @@ const increment1 = {
 const decrement1 = {
   type: 'decrement1',
 };
-const increment2 = {
+// Action Creators 함수 정의 버전
+const increment2 = () => ({
   type: 'increment2',
-};
-const decrement2 = {
+});
+const decrement2 = () => ({
   type: 'decrement2',
-};
+});
 
 // 2. Reducer 함수 생성
 const counterReducer1 = (state = 0, action) => {
@@ -53,7 +54,7 @@ const counterReducer2 = (state = 0, action) => {
 };
 
 // 여러 개의 Reducer를 하나로 합치기
-const rootReducer = combineReducers({ counterReducer1, counterReducer2 });
+const rootReducer = combineReducers({ counter1: counterReducer1, counter2: counterReducer2 });
 
 // 3. 상태 저장소(Store) 생성
 // 7. redux-thunk 기능을 가져와서 사용할 수 있도록 미들웨어로 연결 (createStore에 추가적으로 applyMiddleware 함수를 인자로 전달)
@@ -61,8 +62,8 @@ export const store = legacy_createStore(rootReducer, applyMiddleware(thunk)); //
 
 const App = () => {
   // 5. useSelector로 상태 가져오기
-  const counter1 = useSelector((state) => state.counterReducer1);
-  const counter2 = useSelector((state) => state.counterReducer2);
+  const counter1 = useSelector((state) => state.counter1);
+  const counter2 = useSelector((state) => state.counter2);
 
   // 6-1. useDispatch로 Action 객체 전달하기(사용하기) - useDispatch 함수를 변수에 저장
   const dispatch = useDispatch();
@@ -86,8 +87,8 @@ const App = () => {
       <button onClick={() => dispatch(decrement1)}>-</button>
 
       <div>Counter2 : {counter2}</div>
-      <button onClick={() => dispatch(increment2)}>+</button>
-      <button onClick={() => dispatch(decrement2)}>-</button>
+      <button onClick={() => dispatch(increment2())}>+</button>
+      <button onClick={() => dispatch(decrement2())}>-</button>
     </>
   );
 };
