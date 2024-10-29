@@ -1,6 +1,0 @@
-[submodule "oz-cafe-practice-context-api"]
-	path = oz-cafe-practice-context-api
-	url = https://github.com/soheekimdev/oz-cafe-practice-context-api.git
-[submodule "oz-cafe-redux-toolkit"]
-	path = oz-cafe-redux-toolkit
-	url = https://github.com/soheekimdev/oz-cafe-redux-toolkit.git
