@@ -5,8 +5,8 @@ import ServerTodo from './ServerTodo';
 export default function App() {
   return (
     <>
-      <ClientTodo />
-      {/* <ServerTodo /> */}
+      {/* <ClientTodo /> */}
+      <ServerTodo />
     </>
   );
 }
