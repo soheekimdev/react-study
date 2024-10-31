@@ -1,9 +1,12 @@
-import './App.css';
+import { lazy, Suspense, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Main from './pages/Main';
-import Details from './pages/Details';
-import Search from './pages/Search';
-import { useState } from 'react';
+import './App.css';
+// import Main from './pages/Main';
+// import Details from './pages/Details';
+// import Search from './pages/Search';
+const Main = lazy(() => import('./pages/Main'));
+const Details = lazy(() => import('./pages/Details'));
+const Search = lazy(() => import('./pages/Search'));
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
@@ -17,11 +20,13 @@ const App = () => {
         <button onClick={() => navigate(`/search?animal=${inputValue}`)}>검색</button>
       </header>
 
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/details/:id" element={<Details />} />
-        <Route path="/search" element={<Search />} />
-      </Routes>
+      <Suspense fallback={<h1>로딩 중...</h1>}>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+      </Suspense>
 
       <footer>all rights reserved to OZ</footer>
     </>
