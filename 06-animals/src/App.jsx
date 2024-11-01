@@ -16,7 +16,14 @@ const App = () => {
     <>
       <header>
         <h1>💚 동물 조아 💚</h1>
-        <input type="text" value={inputValue} onChange={(event) => setInputValue(event.target.value)} />
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(event) => {
+            setInputValue(event.target.value);
+            navigate(`/search?animal=${event.target.value}`);
+          }}
+        />
         <button onClick={() => navigate(`/search?animal=${inputValue}`)}>검색</button>
       </header>
 
