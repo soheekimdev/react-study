@@ -3,13 +3,13 @@ body {
   background-color: #1a1a1a;
   color: #ffffff;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
 }
 
 .container {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: #2d2d2d;
   border-radius: 8px;
@@ -41,46 +41,122 @@ body {
   border: 1px solid #712626;
 }
 
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.button-group button {
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
+/* 인증 폼 스타일 */
+.auth-form-container {
+  margin: 20px 0;
+  padding: 20px;
   background-color: #3a3a3a;
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 8px;
   border: 1px solid #4a4a4a;
 }
 
-.button-group button:hover:not(:disabled) {
-  background-color: #4a4a4a;
-  transform: translateY(-1px);
+.auth-mode-toggle {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 10px;
 }
 
-.button-group button:active:not(:disabled) {
-  transform: translateY(1px);
+.auth-mode-toggle button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2d2d2d;
+  color: #a0a0a0;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.button-group button:disabled {
-  background-color: #2a2a2a;
-  color: #666666;
+.auth-mode-toggle button.active {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #e0e0e0;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  background-color: #2d2d2d;
+  color: white;
+  box-sizing: border-box;
+  cursor: text;
+  transition: all 0.3s ease;
+}
+
+.form-group input:hover {
+  border-color: #666666;
+  background-color: #333333;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.1);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00bcd4;
+  background-color: #333333;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.2);
+}
+
+.form-group input:disabled {
   cursor: not-allowed;
-  border-color: #333333;
+  opacity: 0.7;
+  background-color: #252525;
 }
 
+.form-group label.required::after {
+  content: ' *';
+  color: #ff4444;
+}
+
+.form-group input::placeholder {
+  color: #666666;
+  transition: color 0.3s ease;
+}
+
+.form-group input:hover::placeholder {
+  color: #888888;
+}
+
+.auth-form button,
+.update-form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #00bcd4;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.auth-form button:hover:not(:disabled),
+.update-form button:hover:not(:disabled) {
+  background-color: #00acc1;
+}
+
+.auth-form button:disabled,
+.update-form button:disabled {
+  background-color: #4a4a4a;
+  cursor: not-allowed;
+}
+
+/* 사용자 정보 패널 */
 .user-info {
   margin: 20px 0;
   padding: 20px;
   background-color: #3a3a3a;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #4a4a4a;
 }
 
@@ -95,13 +171,86 @@ body {
   color: #e0e0e0;
 }
 
-/* 선택 영역 스타일 */
-::selection {
-  background-color: #00bcd4;
-  color: #ffffff;
+.user-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-/* 스크롤바 스타일 (Webkit 브라우저용) */
+.user-actions button {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+}
+
+.user-actions .info-button {
+  background-color: #00bcd4;
+}
+
+.user-actions .info-button:hover:not(:disabled) {
+  background-color: #00acc1;
+}
+
+.user-actions .logout-button {
+  background-color: #dc3545;
+}
+
+.user-actions .logout-button:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.user-actions button:disabled {
+  background-color: #4a4a4a;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
+/* 애니메이션 효과 추가 */
+@keyframes refresh-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.user-info.refreshing {
+  position: relative;
+}
+
+.user-info.refreshing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(1px);
+}
+
+/* 회원정보 수정 폼 */
+.update-form {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  border: 1px solid #4a4a4a;
+}
+
+.update-form h3 {
+  color: #00bcd4;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* 스크롤바 스타일 */
 ::-webkit-scrollbar {
   width: 8px;
 }
